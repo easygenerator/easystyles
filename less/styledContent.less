@@ -1,130 +1,76 @@
 .styled-content {
-    text-align: justify;
+	.margin-bottom(){
+		&:not(:last-child) {
+            margin-bottom: 15px;
+        }
+	}
     word-wrap: break-word;
     font-family: @secondary-font;
-    color: @styled-content-font-color;
-    line-height: 32px;
+    font-size: 18px;
+    color: @main-text-color;
+    line-height: 1.5;
 
-
-    &:before {
-        content: '';
-        display: block;
-        width: @styled-content-seperator-border-width;
-        margin: 40px auto;
-        border-style: solid;
-        border-width: 1px 0;
-        border-top-color: @styled-content-seperator-border-top-color;
-        border-bottom-color: @styled-content-seperator-border-bottom-color;
+	&:first-child {
+        margin-top: 20px;
     }
-
-    &:after {
-        display: block;
-        content: '';
-        clear: both;
-    }
-
-    &:first-child:before {
-        display: none;
+	
+    &:not(:last-child) {
+        margin-bottom: 40px;
     }
 
     p {
-        margin: 0 0 20px;
-        line-height: 30px;
+        .margin-bottom;
     }
 
     a {
-        color: @styled-content-links-font-color;
+        color: @main-style-color;
         text-decoration: underline;
         cursor: pointer;
-        line-height: 30px;
 
         &:hover {
-            color: @styled-content-links-hover-font-color;
+            color: shade(@main-style-color,10%);
         }
     }
 
     h1 {
-        font-size: 26px;
+        font-size: 24px;
         font-weight: 700;
-        text-align: justify;
-        margin: 35px 0 20px;
-        line-height: 40px;
-
-        &:first-child {
-            margin-top: 0;
-        }
+        .margin-bottom;
     }
 
     h2 {
-        font-size: 24px;
+        font-size: 22px;
         font-weight: 700;
-        text-align: justify;
-        margin: 35px 0 20px;
         text-transform: none;
-        line-height: 36px;
-
-        &:first-child {
-            margin-top: 0;
-        }
+		.margin-bottom;
     }
 
     h3 {
         font-size: 20px;
         font-weight: 700;
-        text-align: justify;
-        margin: 35px 0 20px;
         text-transform: none;
-        line-height: 30px;
-
-        &:first-child {
-            margin-top: 0;
-        }
+		.margin-bottom;
     }
 
     cite {
-        position: relative;
+        border-left-style: solid;
+        border-left-width: 4px;
+        border-left-color: @main-style-color;
         display: block;
-        width: 75%;
-        margin: 15px auto;
-        padding: 10px 40px;
-        font-size: 18px;
-        line-height: 30px;
-        white-space: pre-line;
-        overflow: hidden;
-
-        &:before {
-            position: absolute;
-            font: 50px Helvetica;
-            font-weight: 700;
-            color: @styled-content-cite-marker-color;
-            line-height: 35px;
-            content: "\201C";
-            margin-left: -35px;
-        }
-
-        &:after {
-            position: absolute;
-            font: 50px Helvetica;
-            font-weight: 700;
-            color: @styled-content-cite-marker-color;
-            line-height: 35px;
-            content: "\201D";
-            bottom: -23px;
-            margin-left: 10px;
-        }
+        padding-left: 18px;
+        margin: 20px 0 20px 10px;
+        max-width: 85%;
     }
 
     mark {
-        background-color: @styled-content-mark-background-color;
-        border-radius: @marked-text-border-radius;
-        line-height: 30px;
+        background-color: @main-style-color;
+        color: @mark-text-color;
     }
 
     .table-wrapper {
         .styled-content-table();
 
         ul, ol {
-            padding-left: 0;
             li a {
                 word-break: break-all;
             }
@@ -133,16 +79,23 @@
 
     ul {
         list-style: none;
-        margin: 0 0 20px;
-        line-height: 30px;
-        padding-left: 60px;
+        padding-left: 32px;
+        .margin-bottom;
 
         & > li {
             position: relative;
-            list-style-position: outside;
+			.margin-bottom;
 
             &:before {
-                .styled-content-ul-marker();
+                content: '';
+                display: inline-block;
+                position: absolute;
+                top: 16px;
+                background-color: @main-style-color;
+                margin-left: -22px;
+                margin-top: -5px;
+                width: 5px;
+                height: 5px;
             }
 
             h1 {
@@ -164,21 +117,25 @@
     }
 
     ol {
-        margin: 0 0 20px;
-        line-height: 30px;
-        padding-left: 60px;
+        padding-left: 32px;
         list-style-type: none;
         counter-reset: ol-counter;
+		.margin-bottom;
 
         & > li {
-            list-style-position: inside;
+			position: relative;
+			.margin-bottom;
 
             &:before {
-                content: counter(ol-counter) '.';
+                position: absolute;
+                display: inline-block;
+                content: counter(ol-counter)'.';
                 counter-increment: ol-counter;
-                font-size: 22px;
-                line-height: 1;
-                margin-right: 10px;
+                width: 58px;
+                margin-left: -58px;
+                text-align: right;
+                padding-right: 12px;
+                box-sizing: border-box;
             }
 
             h1 {
@@ -201,8 +158,7 @@
 
     u {
         text-decoration: none;
-        border-bottom: 1px solid @styled-content-font-color;
-        line-height: 30px;
+        border-bottom: 1px solid @main-text-color;
     }
 
     .image-wrapper {
@@ -225,9 +181,9 @@
         }
     }
 
-        .image-wrapper ~ .image-wrapper {
-            clear: none;
-        }
+    .image-wrapper ~ .image-wrapper {
+        clear: none;
+    }
 
     &.hotspot-on-image-container {
         text-align: center;
@@ -236,5 +192,54 @@
 
     iframe {
         max-width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .styled-content {
+        font-size: 16px;
+
+        h1 {
+            font-size: 22px;
+        }
+
+        h2 {
+            font-size: 20px;
+        }
+
+        h3 {
+            font-size: 18px;
+        }
+
+        a {
+            font-size: 16px;
+        }
+
+        cite {
+            font-size: 16px;
+        }
+
+        mark {
+            font-size: 16px;
+        }
+
+        .table-wrapper {
+            font-size: 16px;
+        }
+
+        ul, ol {
+            li {
+                font-size: 16px;
+            }
+        }
+
+        ul {
+            li {
+                &:before {
+                    top: 14px;
+                }
+            }
+        }
     }
 }
