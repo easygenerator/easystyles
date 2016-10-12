@@ -11,11 +11,11 @@
     line-height: 1.5;
 
 	&:first-child {
-        margin-top: 20px;
+        margin-top: 30px;
     }
 	
     &:not(:last-child) {
-        margin-bottom: 40px;
+        margin-bottom: 50px;
     }
 
     p {
@@ -162,21 +162,21 @@
     }
 
     .image-wrapper {
+        text-align: center;
+        display: block;
+        margin: 20px 0;
         max-width: 100%;
         clear: both;
-
         &[style*="float:left"],
         &[style*="float: left"] {
-            margin: 20px 25px 20px 0;
+            margin-right: 25px;
         }
-
         &[style*="float:right"],
         &[style*="float: right"] {
-            margin: 20px 0 20px 25px;
+            margin-left: 25px;
         }
-
         img {
-            border-radius: 5px;
+            border-radius: @styled-content-image-border-radius;
             max-width: 100%;
         }
     }
@@ -188,6 +188,19 @@
     &.hotspot-on-image-container {
         text-align: center;
 		line-height: 0;
+
+        img {
+            border-radius: @styled-content-image-border-radius;
+        }
+    }
+
+    .cropped-image {
+        border-radius: @styled-content-image-border-radius;
+        z-index: 1;
+
+        img {
+            border-radius: @styled-content-image-border-radius;
+        }
     }
 
     iframe {
